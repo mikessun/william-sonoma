@@ -1,6 +1,7 @@
 package demo.williamssonoma.codechallenge.service;
 
 import demo.williamssonoma.codechallenge.exception.InvalidInputException;
+import demo.williamssonoma.codechallenge.exception.InvalidZipRangeException;
 import demo.williamssonoma.codechallenge.model.ZipRange;
 import org.junit.Before;
 import org.junit.Rule;
@@ -92,8 +93,8 @@ public class ArguementValidatorTest {
     @Test
     public void testParseAndValidateArguementWithLowOverUpperRange() {
         String[] args = new String[]{"[11112,11110]", "[11114,11115]"};
-        expectedException.expect(InvalidInputException.class);
-        expectedException.expectMessage(containsString("low bound can not be greater than upper bound: [11112,11110]"));
+        expectedException.expect(InvalidZipRangeException.class);
+        expectedException.expectMessage(containsString("Lower bound must not be greater than upper bound - [11112,11110]"));
         arguementValidator.parseAndValidateArguement(args);
     }
 

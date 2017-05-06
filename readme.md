@@ -32,9 +32,9 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+Following command to run any test
 ```
-target/codechallenge-1.0.jar [00123,00124] [12345,12348]
+java -jar target/codechallenge-1.0.jar [00123,00124] [12345,12348]
 ```
 
 ## Built With
@@ -43,4 +43,4 @@ target/codechallenge-1.0.jar [00123,00124] [12345,12348]
 
 ## Authors
 
-* **Michael Sun** - *Initial work* - [Git Hub Repository](https://github.com/mikessun)
+* **Michael Sun** - *Initial work* - [Git Hub Repository](https://github.com/mikessun/william-sonoma)

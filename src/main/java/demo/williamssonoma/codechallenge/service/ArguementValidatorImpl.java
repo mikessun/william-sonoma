@@ -31,10 +31,6 @@ public class ArguementValidatorImpl implements ArguementValidator {
                     if (matcher.find()) {
                         final int lowBound = Integer.parseInt(matcher.group(1));
                         final int upperBound = Integer.parseInt(matcher.group(2));
-                        if (lowBound > upperBound) {
-                            throw new InvalidInputException(String.format("low bound can not be greater than upper bound: %s",
-                                    args[i]));
-                        }
                         zipRanges.add(new ZipRange(lowBound, upperBound));
                     } else {
                         throw new InvalidInputException(String.format("Invalid input element: %s", args[i]));
