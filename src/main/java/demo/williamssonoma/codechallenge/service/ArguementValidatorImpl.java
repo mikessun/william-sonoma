@@ -12,12 +12,22 @@ import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 /**
- * This is the implementation of arguements validation
+ * This is the implementation of arguements validation interface {@link ArguementValidator}
+ *
+ *  @author Michael Sun
  */
 @Service
 public class ArguementValidatorImpl implements ArguementValidator {
+    /*zip range pattern*/
     public static final Pattern ZIP_RANGE_PATTERN = Pattern.compile("\\[(\\d{5}),(\\d{5})\\]");
 
+    /**
+     * {@inheritDoc}
+     * @see ArguementValidator#parseAndValidateArguement(String[])
+     *
+     * @param args
+     * @return
+     */
     @Override
     public Collection<ZipRange> parseAndValidateArguement(String[] args) {
         if (args == null || args.length == 0) {

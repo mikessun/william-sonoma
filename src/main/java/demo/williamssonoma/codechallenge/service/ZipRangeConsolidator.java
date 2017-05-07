@@ -11,21 +11,32 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * implementing zip range consolidation
+ * This interface defines the action to consolidate zip ranges
+ *
+ *  @author Michael Sun
  */
 public interface ZipRangeConsolidator {
     public static final Validator CONATRAIN_VALIDAOR = Validation.buildDefaultValidatorFactory().getValidator();
 
     /**
-     * <p>Given a list of {@link ZipRange}s, this method consolidates the zip ranges and output
-     * the minmum number of ranges required to represent the same ranges as the input.
-     * Ranges may be provided in any arbitrary order and may or may not overlap.
+     * <p>
+     *     This method consolidates the input {@link ZipRange}s and output the minmum number of
+     *     ranges with ascending order.
      *
-     * @param ranges the zip code ranges to be merged
-     * @return the consolidated list of zip code ranges, sorted in ascending order
+     * @param zipRanges the zip code ranges to be consolidated
+     * @return the consolidated list of zip ranges, sorted in ascending order
      */
     public Collection<ZipRange> consolidateZipRanges(Collection<ZipRange> zipRanges);
 
+    /**
+     * <p>
+     *     This method validates the constraints defined in a {@link ZipRange} listed below:
+     *     <li>only positive values</li>
+     *     <li>must be less than 99999</li>
+     * </p>
+     * <p></p>
+     * @param zipRange
+     */
     default void validateZipRange(ZipRange zipRange) {
         Set<ConstraintViolation<ZipRange>> violations = CONATRAIN_VALIDAOR.validate(zipRange);
         if (violations != null && violations.size() > 0) {

@@ -10,13 +10,17 @@ import javax.validation.ConstraintViolation;
 import java.util.*;
 
 /**
- * Created by michaels6 on 5/5/17.
+ * This class implements {@link ZipRangeConsolidator}
+ *
+ *  @author Michael Sun
  */
+
 @Service
 @Slf4j
 public class ZipRangeConsolidatorImpl implements ZipRangeConsolidator {
     /**
      * {@inheritDoc}
+     * @see {@link ZipRangeConsolidator#consolidateZipRanges(Collection)}
      *
      * @param zipRanges
      * @return
@@ -81,5 +85,4 @@ public class ZipRangeConsolidatorImpl implements ZipRangeConsolidator {
         return smallerKeyZipRange.getUpperBound() >= largerKeyZipRange.getLowBound() && smallerKeyZipRange.getUpperBound()
                 <= largerKeyZipRange.getUpperBound();
     }
-
 }

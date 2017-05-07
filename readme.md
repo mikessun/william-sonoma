@@ -20,6 +20,10 @@ apache maven 3.x
 
 ```
 
+Note if runing the application in IDE, the IDE should install below plug-in
+```
+lombok plugin
+```
 ### Build the application
 
 Run following command to build the application
@@ -35,6 +39,7 @@ End with an example of getting some data out of the system or using it for a lit
 Following command to run any test
 ```
 java -jar target/codechallenge-1.0.jar [00123,00124] [12345,12348]
+java -jar target/codechallenge-1.0.jar [94133,94133] [94200,94299] [94226,94399]
 ```
 
 ## Built With

@@ -8,10 +8,16 @@ import javax.validation.constraints.Min;
 import java.util.Comparator;
 
 /**
- * this class represents an excluded zip range
+ *  This class represents an zip range
+ *
+ *  @author Michael Sun
  */
+
 @EqualsAndHashCode
 public class ZipRange implements Comparable<ZipRange> {
+    /*
+     * defining how two ZipRanges should be compared for sorting
+     */
     private static final Comparator<ZipRange> ZIP_RANGE_COMPARATOR =
             Comparator.comparingInt(ZipRange::getLowBound).thenComparingInt(ZipRange::getUpperBound);
 
@@ -49,7 +55,7 @@ public class ZipRange implements Comparable<ZipRange> {
     }
 
     /**
-     * Returns a string representation of this zip code range.
+     * Returns this 5-digit zip code range, e.g., [00123,12345]
      *
      * @return a string representation of the range in the form {@code [lower,upper]}
      * @see Object#toString()

@@ -1,7 +1,9 @@
 package demo.williamssonoma.codechallenge.exception;
 
 /**
- * exception for invalid zip ranges
+ * Thrown to indicate that some input {@link demo.williamssonoma.codechallenge.model.ZipRange}s are invalid.<p/>
+ *
+ * @author  Micahael Sun
  */
 public class InvalidInputException extends RuntimeException {
     public InvalidInputException() {

@@ -1,7 +1,9 @@
 package demo.williamssonoma.codechallenge.exception;
 
 /**
- * exception for invalid zip ranges
+ * Thrown to indicate that some {@link demo.williamssonoma.codechallenge.model.ZipRange}s are invalid.<p/>
+ *
+ * @author  Micahael Sun
  */
 public class InvalidZipRangeException extends RuntimeException {
     public InvalidZipRangeException() {

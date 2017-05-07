@@ -1,7 +1,9 @@
 package demo.williamssonoma.codechallenge.exception;
 
 /**
- * exception during consolidating zip ranges
+ * Thrown to indicate that some exceptions happen during the consolication.<p/>
+ *
+ * @author  Micahael Sun
  */
 public class ConsolidationException extends RuntimeException {
     public ConsolidationException() {
