@@ -8,7 +8,7 @@ import java.util.Collection;
  *  @author Michael Sun
  */
 
-public interface ArguementValidator<ZipRange> {
+public interface ArguementProcessor<ZipRange> {
 
     /**
      * <p>

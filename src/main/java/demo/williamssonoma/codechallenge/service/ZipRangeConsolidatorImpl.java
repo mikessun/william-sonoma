@@ -1,12 +1,9 @@
 package demo.williamssonoma.codechallenge.service;
 
-import demo.williamssonoma.codechallenge.exception.ConsolidationException;
-import demo.williamssonoma.codechallenge.exception.InvalidZipRangeException;
 import demo.williamssonoma.codechallenge.model.ZipRange;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolation;
 import java.util.*;
 
 /**
@@ -34,6 +31,7 @@ public class ZipRangeConsolidatorImpl implements ZipRangeConsolidator {
         boolean makingModifiableCollection = true;
         if (zipRanges.getClass().isAssignableFrom(SortedSet.class)) {
             try {
+                /*test if the collection is modifiable*/
                 zipRanges.addAll(Collections.EMPTY_SET);
                 sortedSet = (SortedSet<ZipRange>) zipRanges;
                 makingModifiableCollection = false;
@@ -55,34 +53,22 @@ public class ZipRangeConsolidatorImpl implements ZipRangeConsolidator {
                 previousZipRange = zipRange;
             } else if (isExcluded(previousZipRange, zipRange)) {
                 previousZipRange = zipRange;
-            } else if (isIncludedInSmallerKeyZipRange(previousZipRange, zipRange)) {
+            } else if (isIncludedInSmallerZipRange(previousZipRange, zipRange)) {
                 iterator.remove();
-            } else if (isIncludedInLargerKeyZipRange(previousZipRange, zipRange) || isOverlapped(previousZipRange, zipRange)) {
+            }else {
                 previousZipRange.setUpperBound(zipRange.getUpperBound());
                 iterator.remove();
-            } else {
-                throw new ConsolidationException(String.format("Invalid range: current temp range %s, current range %s",
-                        previousZipRange, zipRange));
             }
         }
 
         return sortedSet;
     }
 
-    private boolean isIncludedInSmallerKeyZipRange(ZipRange smallerKeyZipRange, ZipRange largerKeyZipRange) {
-        return smallerKeyZipRange.getUpperBound() >= largerKeyZipRange.getUpperBound();
+    private boolean isIncludedInSmallerZipRange(ZipRange smallerZipRange, ZipRange largerZipRange) {
+        return smallerZipRange.getUpperBound() >= largerZipRange.getUpperBound();
     }
 
-    private boolean isIncludedInLargerKeyZipRange(ZipRange smallerKeyZipRange, ZipRange largerKeyZipRange) {
-        return smallerKeyZipRange.getUpperBound() <= largerKeyZipRange.getUpperBound();
-    }
-
-    private boolean isExcluded(ZipRange smallerKeyZipRange, ZipRange largerKeyZipRange) {
-        return smallerKeyZipRange.getUpperBound() < largerKeyZipRange.getLowBound();
-    }
-
-    private boolean isOverlapped(ZipRange smallerKeyZipRange, ZipRange largerKeyZipRange) {
-        return smallerKeyZipRange.getUpperBound() >= largerKeyZipRange.getLowBound() && smallerKeyZipRange.getUpperBound()
-                <= largerKeyZipRange.getUpperBound();
+    private boolean isExcluded(ZipRange smallerZipRange, ZipRange largerZipRange) {
+        return smallerZipRange.getUpperBound() < largerZipRange.getLowBound();
     }
 }

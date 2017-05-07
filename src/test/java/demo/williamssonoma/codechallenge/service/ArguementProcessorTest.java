@@ -15,34 +15,34 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 
 /**
- * Tests for {@link ArguementValidator}
+ * Tests for {@link ArguementProcessor}
  *
  * @author Michael Sun
  */
-public class ArguementValidatorTest {
+public class ArguementProcessorTest {
 
     @Rule
     public ExpectedException expectedException=ExpectedException.none();
 
-    private ArguementValidator arguementValidator;
+    private ArguementProcessor arguementProcessor;
 
     @Before
     public void before() {
-        arguementValidator = new ArguementValidatorImpl();
+        arguementProcessor = new ArguementProcessorImpl();
     }
 
     @Test
     public void testParseAndValidateArguementWithNoArguement() {
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("zip range input can not be empty!"));
-        arguementValidator.parseAndValidateArguement(null);
+        arguementProcessor.parseAndValidateArguement(null);
     }
 
     @Test
     public void testParseAndValidateArguementWithEmptyArguement() {
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("zip range input can not be empty!"));
-        arguementValidator.parseAndValidateArguement(new String[]{});
+        arguementProcessor.parseAndValidateArguement(new String[]{});
     }
 
     @Test
@@ -51,7 +51,7 @@ public class ArguementValidatorTest {
         ZipRange zipRange2 = new ZipRange(22345, 22345);
         String[] args = new String[]{"[ " + zipRange1.getLowBound() + " , " + zipRange1.getUpperBound() +
                 " ]", "[" + zipRange2.getLowBound() + "," + zipRange2.getUpperBound() + "]"};
-        Collection<ZipRange> collection = arguementValidator.parseAndValidateArguement(args);
+        Collection<ZipRange> collection = arguementProcessor.parseAndValidateArguement(args);
 
         assertThat(collection, hasItem(zipRange1));
         assertThat(collection, hasItem(zipRange2));
@@ -66,7 +66,7 @@ public class ArguementValidatorTest {
 
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("Invalid input element: [ 111111 , 111112 ]"));
-        arguementValidator.parseAndValidateArguement(args);
+        arguementProcessor.parseAndValidateArguement(args);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class ArguementValidatorTest {
 
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("Invalid input element: [ -12341 , 12342 ]"));
-        arguementValidator.parseAndValidateArguement(args);
+        arguementProcessor.parseAndValidateArguement(args);
     }
 
     @Test
@@ -87,7 +87,7 @@ public class ArguementValidatorTest {
 
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("Invalid input element: [11112]"));
-        arguementValidator.parseAndValidateArguement(args);
+        arguementProcessor.parseAndValidateArguement(args);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ArguementValidatorTest {
         String[] args = new String[]{"[11112,11110]", "[11114,11115]"};
         expectedException.expect(InvalidZipRangeException.class);
         expectedException.expectMessage(containsString("Lower bound must not be greater than upper bound - [11112,11110]"));
-        arguementValidator.parseAndValidateArguement(args);
+        arguementProcessor.parseAndValidateArguement(args);
     }
 
     @Test
@@ -103,6 +103,6 @@ public class ArguementValidatorTest {
         String[] args = new String[]{"[low, 11112]", "[11114, 11115]"};
         expectedException.expect(InvalidInputException.class);
         expectedException.expectMessage(containsString("Invalid input element: [low, 11112]"));
-        arguementValidator.parseAndValidateArguement(args);
+        arguementProcessor.parseAndValidateArguement(args);
     }
 }

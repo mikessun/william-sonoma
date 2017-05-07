@@ -4,7 +4,7 @@ import demo.williamssonoma.codechallenge.exception.ConsolidationException;
 import demo.williamssonoma.codechallenge.exception.InvalidInputException;
 import demo.williamssonoma.codechallenge.exception.InvalidZipRangeException;
 import demo.williamssonoma.codechallenge.model.ZipRange;
-import demo.williamssonoma.codechallenge.service.ArguementValidator;
+import demo.williamssonoma.codechallenge.service.ArguementProcessor;
 import demo.williamssonoma.codechallenge.service.ZipRangeConsolidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import static java.lang.System.exit;
 public class SonomaZipConsolidationApplication implements CommandLineRunner {
 
     @Autowired
-    private ArguementValidator arguementValidator;
+    private ArguementProcessor arguementProcessor;
 
     @Autowired
     private ZipRangeConsolidator zipRangeConsolidator;
@@ -44,7 +44,7 @@ public class SonomaZipConsolidationApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            Collection<ZipRange> consolidatedZipRanges = zipRangeConsolidator.consolidateZipRanges(arguementValidator.parseAndValidateArguement(args));
+            Collection<ZipRange> consolidatedZipRanges = zipRangeConsolidator.consolidateZipRanges(arguementProcessor.parseAndValidateArguement(args));
             log.info("Consolidated zip ranges: {}", consolidatedZipRanges.stream().map(x -> x.toString()).collect(Collectors.joining(", ")));
             exit(0);
         } catch (InvalidZipRangeException|InvalidInputException|ConsolidationException e) {
