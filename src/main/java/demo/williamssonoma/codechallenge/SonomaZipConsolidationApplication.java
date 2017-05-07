@@ -26,7 +26,7 @@ import static java.lang.System.exit;
  */
 @SpringBootApplication
 @Slf4j
-public class SomonaZipConsolidationApplication implements CommandLineRunner {
+public class SonomaZipConsolidationApplication implements CommandLineRunner {
 
     @Autowired
     private ArguementValidator arguementValidator;
@@ -35,7 +35,7 @@ public class SomonaZipConsolidationApplication implements CommandLineRunner {
     private ZipRangeConsolidator zipRangeConsolidator;
 
     public static void main(String[] args) throws Exception {
-        SpringApplication app = new SpringApplication(SomonaZipConsolidationApplication.class);
+        SpringApplication app = new SpringApplication(SonomaZipConsolidationApplication.class);
         /*disable SpringBoot banner*/
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
