@@ -6,7 +6,6 @@ import demo.williamssonoma.codechallenge.model.ZipRange;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Collection;
 import java.util.Set;
 
@@ -32,8 +31,9 @@ public interface ZipRangeConsolidator {
      * <p>
      *     This method validates the constraints defined in a {@link ZipRange} listed below:
      *     <li>only positive values</li>
-     *     <li>must be less than 99999</li>
+     *     <li>must be not great than 99999</li>
      * </p>
+     *
      * <p></p>
      * @param zipRange
      */

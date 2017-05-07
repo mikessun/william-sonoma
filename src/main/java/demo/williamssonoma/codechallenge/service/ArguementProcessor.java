@@ -13,7 +13,7 @@ public interface ArguementProcessor<ZipRange> {
     /**
      * <p>
      *     This method will parse the input array of string zip ranges and validate
-     *     the each zip range element. Finally return a ascending-order set of zip ranges
+     *     each zip range element. It returns a set of valid {@link ZipRange}s
      * </p>
      *
      * @param array of string zip ranges
