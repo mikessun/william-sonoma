@@ -17,6 +17,7 @@ What things you need to install the software and how to install them
 ```
 java 8
 apache maven 3.x 
+local maven $user_home/.m2/settings.xml can access public maven repository
 
 ```
 

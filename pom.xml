@@ -14,7 +14,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.1.RELEASE</version>
     </parent>
-
+	
     <licenses>
         <license>
             <name>MIT License</name>
@@ -50,6 +50,16 @@
         <projectlombok.version>1.14.8</projectlombok.version>
         <slf4j.version>1.7.5</slf4j.version>
     </properties>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties/>
+		</profile>
+	</profiles>
 
     <dependencies>
 
